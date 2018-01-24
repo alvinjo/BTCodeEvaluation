@@ -23,7 +23,7 @@ public class MonitoringSystemDisplay {
      * @param args Takes the file path as an argument.
      */
     public static void main(String[] args) {
-        MonitoringSystemDisplay monitor = new MonitoringSystemDisplay("C:\\Users\\Alvin\\IdeaProjects\\Free\\src\\BTCodeEvaluation\\asd.txt");
+        MonitoringSystemDisplay monitor = new MonitoringSystemDisplay(args[0]);
     }
 
 
