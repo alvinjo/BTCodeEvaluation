@@ -6,49 +6,67 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MonitoringSystemDisplayTest {
 
-    MonitoringSystemDisplay mm;
+    MonitoringSystemDisplay monitor;
 
     @Before
     public void setUp() {
-        mm = new MonitoringSystemDisplay("C:\\Users\\Alvin\\IdeaProjects\\Free\\src\\BTCodeEvaluation\\test.txt");
+        monitor = new MonitoringSystemDisplay("C:\\Users\\Alvin\\IdeaProjects\\Free\\src\\BTCodeEvaluation\\test.txt");
     }
 
 
     @Test
     public void inSync(){
-        mm.generated = "000001";
-        mm.previousGenerated = "000000";
-        assertTrue(mm.inSync());
+        monitor.generated = "000001";
+        monitor.previousGenerated = "000000";
+        assertTrue(monitor.inSync());
 
-        mm.generated = "000001";
-        mm.previousGenerated = "000002";
-        assertFalse(mm.inSync());
+        monitor.generated = "000001";
+        monitor.previousGenerated = "000002";
+        assertFalse(monitor.inSync());
     }
+
 
     @Test
     public void isInteger(){
-        assertTrue(mm.isInteger("000000"));
-        assertTrue(mm.isInteger("123456789012"));
-        assertFalse(mm.isInteger("1234r5135"));
+        assertTrue(monitor.isInteger("000000"));
+        assertTrue(monitor.isInteger("123456789012"));
+        assertFalse(monitor.isInteger("1234r5135"));
     }
+
 
     @Test
     public void decipher(){
-        assertTrue(mm.received.equals("1508405807468"));
-        assertTrue(mm.generated.equals("1508405807480"));
-        assertTrue(mm.node1.equals("luke"));
-        assertTrue(mm.notification.equals("LOST"));
-        assertTrue(mm.node2.equals("leia"));
+        assertTrue(monitor.received.equals("1508405807468"));
+        assertTrue(monitor.generated.equals("1508405807480"));
+        assertTrue(monitor.node1.equals("luke"));
+        assertTrue(monitor.notification.equals("LOST"));
+        assertTrue(monitor.node2.equals("leia"));
     }
+
 
     @Test
     public void clearVariables(){
-        mm.clearVariables();
-        assertTrue(mm.received == null);
-        assertTrue(mm.generated == null);
-        assertTrue(mm.node1 == null);
-        assertTrue(mm.node2 == null);
-        assertTrue(mm.notification == null);
+        monitor.clearVariables();
+        assertTrue(monitor.received == null);
+        assertTrue(monitor.generated == null);
+        assertTrue(monitor.node1 == null);
+        assertTrue(monitor.node2 == null);
+        assertTrue(monitor.notification == null);
     }
 
+
+    @Test
+    public void timeStampValid(){
+        monitor.received = "1500000007500";
+        monitor.generated = "1500000007470";
+        assertTrue(monitor.timeStampValid());
+
+        monitor.received = "1500000007100";
+        monitor.generated = "1500000007600";
+        assertFalse(monitor.timeStampValid());
+
+        monitor.received = "1500000007100";
+        monitor.generated = "1501000007100";
+        assertFalse(monitor.timeStampValid());
+    }
 }
