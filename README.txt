@@ -16,12 +16,12 @@ Assumptions made:
 2. Notifications involving two nodes must output twice. The first output will always state the sending node is alive and the second output will involve the second node and the notification type (e.g. "luke Found r2d2" outputs luke ALIVE and r2d2 ALIVE)
 
 Assumptions made but not acted upon:
-1. A node that sends a notification outside its 50ms time frame is considerd UNKNOWN. If the difference between a nodes notification generation timestamp exceeds 50ms then it is out of sync and is declared UNKNOWN. This assumption was not acted upon because much of the example data would be out of sync because of this rule and I didn't believe this would be correct.
+1. A node that sends a notification outside its 50ms time frame is considered UNKNOWN. If the difference between a nodes notification generation timestamp exceeds 50ms then it is out of sync and is declared UNKNOWN. This assumption was not acted upon because much of the example data would be out of sync because of this rule and I didn't believe this would be correct.
 
 
 Difficulties:
-1. Some messages in the example data seem to be recieved by the monitoring system before they were generated.
-The receieved timestamp was lower than the generated timestamp. Would this be considered malformed data?
+1. Some messages in the example data seem to be received by the monitoring system before they were generated.
+The received timestamp was lower than the generated timestamp. Would this be considered malformed data?
 In this case I have included a method that detects this type of data and doesn't display the output.
 Maybe instead of this, have the program throw an exception and end the program.
 
@@ -33,7 +33,7 @@ Improvements:
 	timestamp timestamp node status node
 		check if both formats are adhered to
 3. Variables in the inSync method can be stored. Avoids having to execute the same statement again, saving time.
-4. The inSycn method can be improved by having each character of the two timestamp variables compared (as integers) individually. The comparison would be in a loop that checks a digit from both variables and ends the loop once one of the variables is larger/smaller than the other. The method could then return true or false depending on the result.
+4. The inSync method can be improved by having each character of the two timestamp variables compared (as integers) individually. The comparison would be in a loop that checks a digit from both variables and ends the loop once one of the variables is larger/smaller than the other. The method could then return true or false depending on the result.
 
 
 
